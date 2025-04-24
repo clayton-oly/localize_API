@@ -4,12 +4,9 @@
   <div class="form-group">
     <label for="cnpj">CNPJ:</label>
     <input type="text" id="cnpj" [(ngModel)]="cnpj" class="form-control" placeholder="Digite o CNPJ" />
-    <button class="btn btn-primary mt-2" (click)="salvarEmpresa()" [disabled]="!cnpj || loading">
-      Cadastrar
-    </button>
+    <button class="btn btn-primary mt-2" (click)="salvarEmpresa()" [disabled]="!cnpj">Cadastrar</button>
   </div>
 
-  <div *ngIf="loading">Salvando...</div>
+  <div *ngIf="loading">Carregando...</div>
   <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
-  <div *ngIf="sucesso" class="alert alert-success">{{ sucesso }}</div>
 </div>

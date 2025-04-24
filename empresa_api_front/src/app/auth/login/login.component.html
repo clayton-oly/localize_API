@@ -1,43 +1,42 @@
 <div class="login-container">
-    <h2>Login</h2>
-  
-    <form #loginForm="ngForm" (ngSubmit)="onLogin()">
-      <!-- Email -->
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          [(ngModel)]="email"
-          required
-          class="form-control"
-        />
-      </div>
-  
-      <!-- Senha -->
-      <div class="form-group">
-        <label for="senha">Senha:</label>
-        <input
-          type="password"
-          id="senha"
-          name="senha"
-          [(ngModel)]="senha"
-          required
-          class="form-control"
-        />
-      </div>
-  
-      <!-- Botão de login -->
-      <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary">
-        Entrar
-      </button>
-    </form>
-  
-    <!-- Link para cadastro -->
-    <p class="mt-3">
-      Não tem uma conta?
-      <a routerLink="/register">Cadastre-se aqui</a>
-    </p>
-  </div>
-  
+  <h2>Login</h2>
+
+  <form #loginForm="ngForm" (ngSubmit)="onLogin()">
+    <!-- Email -->
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        [(ngModel)]="email"
+        required
+        class="form-control"
+      />
+    </div>
+
+    <!-- Senha -->
+    <div class="form-group">
+      <label for="senha">Senha:</label>
+      <input
+        type="password"
+        id="senha"
+        name="senha"
+        [(ngModel)]="senha"
+        required
+        class="form-control"
+      />
+    </div>
+
+    <!-- Botão de login -->
+    <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary">
+      Entrar
+    </button>
+  </form>
+
+  <!-- Link para cadastro -->
+  <p class="mt-3">
+    Não tem uma conta?
+    <a routerLink="/register">Cadastre-se aqui</a>
+  </p>
+</div>

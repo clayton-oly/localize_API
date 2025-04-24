@@ -11,8 +11,7 @@ interface LoginResponse {
 })
 export class AuthService {
   //private apiUrl = 'https://seu-backend-na-render.com/api/auth'; // substitui com sua URL real
-  private apiUrl = 'https://localhost:7186/api/auth'; // substitui com sua URL real
-
+  private apiUrl = 'https://localhost:7186/api/auth'
 
   constructor(private http: HttpClient) {}
 

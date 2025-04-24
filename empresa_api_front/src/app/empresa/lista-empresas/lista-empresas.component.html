@@ -1,25 +1,22 @@
 <div class="container">
-    <h2>Empresas Cadastradas</h2>
-  
-    <div *ngIf="loading">Carregando...</div>
-  
-    <table *ngIf="!loading" class="table table-striped">
-      <thead>
-        <tr>
-          <th>Nome Empresarial</th>
-          <th>Nome Fantasia</th>
-          <th>CNPJ</th>
-          <th>Situação</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let empresa of empresas">
-          <td>{{ empresa.nomeEmpresarial}}</td>
-          <td>{{ empresa.nomeFantasia }}</td>
-          <td>{{ empresa.cnpj }}</td>
-          <td>{{ empresa.situacao }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  
+  <h2>Empresas Cadastradas</h2>
+
+  <div *ngIf="loading">Carregando...</div>
+
+  <table *ngIf="!loading" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nome Empresarial</th>
+        <th>CNPJ</th>
+        <th>Situação</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let empresa of empresas">
+        <td>{{ empresa.nomeEmpresarial }}</td>
+        <td>{{ empresa.cnpj }}</td>
+        <td>{{ empresa.situacao }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

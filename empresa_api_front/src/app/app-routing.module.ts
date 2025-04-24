@@ -5,22 +5,15 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { CadastroEmpresaComponent } from './empresa/cadastro-empresa/cadastro-empresa.component';
 import { ListaEmpresasComponent } from './empresa/lista-empresas/lista-empresas.component';
-import { AuthGuard } from './core/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  {
-    path: 'empresas',
-    canActivate: [AuthGuard],
-    children: [
-      { path: '', component: ListaEmpresasComponent },
-      { path: 'nova', component: CadastroEmpresaComponent }
-    ]
-  },
-  { path: '**', redirectTo: 'login' }
+  { path: 'empresas', component: ListaEmpresasComponent },
+  { path: 'empresas/nova', component: CadastroEmpresaComponent },
+  { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

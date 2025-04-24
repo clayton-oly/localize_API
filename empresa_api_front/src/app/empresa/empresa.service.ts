@@ -6,20 +6,15 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class EmpresaService {
-  private apiUrl = 'https://seu-backend-na-render.com/api/empresas'; // substitua pela URL real do seu backend
+  private apiUrl = 'https://localhost:7186/api/empresa'; // ajuste se for ambiente em produção
 
   constructor(private http: HttpClient) {}
 
-  consultarEmpresa(cnpj: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/consultar/${cnpj}`);
-  }
-
-  salvarEmpresa(empresa: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/salvar`, empresa);
+  salvarEmpresa(cnpj: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/${cnpj}`, null); // enviando só o CNPJ via POST
   }
 
   listarEmpresas(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/listar`);
+    return this.http.get<any[]>(this.apiUrl);
   }
-  
 }

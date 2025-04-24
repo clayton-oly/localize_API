@@ -9,39 +9,33 @@ import { EmpresaService } from '../empresa.service';
 })
 export class CadastroEmpresaComponent {
   cnpj: string = '';
-  empresa: any = null;
   loading: boolean = false;
   error: string = '';
+  sucesso: string = '';
 
   constructor(private empresaService: EmpresaService, private router: Router) {}
 
-  buscarEmpresa() {
-    if (this.cnpj) {
-      this.loading = true;
-      this.error = '';
-      this.empresaService.consultarEmpresa(this.cnpj).subscribe({
-        next: (data) => {
-          this.empresa = data;
-          this.loading = false;
-        },
-        error: (err) => {
-          this.error = 'Erro ao consultar empresa. Tente novamente.';
-          this.loading = false;
-        }
-      });
-    }
-  }
-
   salvarEmpresa() {
-    if (this.empresa) {
-      this.empresaService.salvarEmpresa(this.empresa).subscribe({
-        next: () => {
-          this.router.navigate(['/empresas']);
-        },
-        error: (err) => {
-          this.error = 'Erro ao salvar empresa. Tente novamente.';
-        }
-      });
+    if (!this.cnpj) {
+      this.error = 'CNPJ é obrigatório.';
+      return;
     }
+
+    this.loading = true;
+    this.error = '';
+    this.sucesso = '';
+
+    this.empresaService.salvarEmpresa(this.cnpj).subscribe({
+      next: () => {
+        this.loading = false;
+        this.sucesso = 'Empresa cadastrada com sucesso!';
+        this.cnpj = '';
+        // opcional: this.router.navigate(['/empresas']);
+      },
+      error: () => {
+        this.loading = false;
+        this.error = 'Erro ao salvar empresa. Verifique o CNPJ.';
+      }
+    });
   }
 }

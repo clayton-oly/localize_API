@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "snh21dHVHhyqtzDzWazmNjXiJaLFRX1DVnlhTnE301Q=",
+  "Hash": "mpN5T++ZLMq/uQgdgOZ5LyAkHdSTMMxwFdm1AvlUhiY=",
   "Source": "EmpresaApi",
   "BasePath": "_content/EmpresaApi",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }

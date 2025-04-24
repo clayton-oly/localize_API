@@ -16,4 +16,4 @@ WORKDIR /app
 COPY --from=build /out .
 
 EXPOSE 80
-ENTRYPOINT ["dotnet", "empresas_API.dll"]
+ENTRYPOINT ["dotnet", "EmpresaApi.dll"]

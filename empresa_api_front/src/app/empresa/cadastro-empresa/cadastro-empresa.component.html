@@ -1,0 +1,22 @@
+<div class="container">
+    <h2>Cadastro de Empresa</h2>
+  
+    <div class="form-group">
+      <label for="cnpj">CNPJ:</label>
+      <input type="text" id="cnpj" [(ngModel)]="cnpj" class="form-control" placeholder="Digite o CNPJ" />
+      <button class="btn btn-info mt-2" (click)="buscarEmpresa()" [disabled]="!cnpj">Buscar Empresa</button>
+    </div>
+  
+    <div *ngIf="loading">Carregando...</div>
+    <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+  
+    <div *ngIf="empresa">
+      <h3>Dados da Empresa</h3>
+      <p><strong>Nome Empresarial:</strong> {{ empresa.nome_empresarial }}</p>
+      <p><strong>Nome Fantasia:</strong> {{ empresa.nome_fantasia }}</p>
+      <p><strong>CNPJ:</strong> {{ empresa.cnpj }}</p>
+      <p><strong>Situação:</strong> {{ empresa.situacao }}</p>
+      <button class="btn btn-success" (click)="salvarEmpresa()">Salvar Empresa</button>
+    </div>
+  </div>
+  

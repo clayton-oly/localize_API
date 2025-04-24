@@ -24,7 +24,12 @@ namespace EmpresaApi.Controllers
         [HttpPost("{cnpj}")]
         public async Task<IActionResult> CadastrarEmpresa(string cnpj)
         {
-            var usuarioId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
+            var claim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (claim == null)
+                return Unauthorized("Usuário não autenticado.");
+
+            var usuarioId = int.Parse(claim.Value);
+
 
             var resposta = await _receitaWs.BuscarCnpjAsync(cnpj);
             if (resposta == null)
@@ -61,7 +66,12 @@ namespace EmpresaApi.Controllers
         [HttpGet]
         public IActionResult ListarEmpresas()
         {
-            var usuarioId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
+            var claim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (claim == null)
+                return Unauthorized("Usuário não autenticado.");
+
+            var usuarioId = int.Parse(claim.Value);
+
             var empresas = _context.Empresas
                 .Where(e => e.UsuarioId == usuarioId)
                 .ToList();

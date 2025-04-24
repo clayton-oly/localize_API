@@ -82,6 +82,17 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
     app.UseSwaggerUI();
 }
 
+// Redireciona da raiz para o Swagger automaticamente
+app.Use(async (context, next) =>
+{
+    if (context.Request.Path == "/")
+    {
+        context.Response.Redirect("/swagger");
+        return;
+    }
+    await next();
+});
+
 app.UseHttpsRedirection();
 
 app.MapControllers();

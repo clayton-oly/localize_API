@@ -2,13 +2,15 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# Copia o arquivo .sln e os .csproj para restaurar as dependências
-COPY empresa_api_back/*.sln ./
+# Copia a solution e os arquivos .csproj para restaurar dependências
+COPY empresa_api_back/EmpresaApi.sln ./
 COPY empresa_api_back/**/*.csproj ./empresa_api_back/
-WORKDIR /src/empresa_api_back
-RUN dotnet restore ../*.sln
 
-# Copia o restante dos arquivos
+# Restaura usando a solution
+WORKDIR /src/empresa_api_back
+RUN dotnet restore ../EmpresaApi.sln
+
+# Copia o restante do código
 COPY empresa_api_back/. ./
 RUN dotnet publish -c Release -o /app/publish
 

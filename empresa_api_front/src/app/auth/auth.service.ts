@@ -1,3 +1,4 @@
+// src/app/auth/auth.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -10,7 +11,7 @@ interface LoginResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  //private apiUrl = 'https://seu-backend-na-render.com/api/auth'; // substitui com sua URL real
+  //private apiUrl = 'https://empresas-api-lqwm.onrender.com/api/auth';
   private apiUrl = 'https://localhost:7186/api/auth'
 
   constructor(private http: HttpClient) {}
@@ -31,11 +32,11 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('token');
+    localStorage.removeItem('token'); // Remove o token quando o usuário sair
   }
 
   isAuthenticated(): boolean {
-    return !!localStorage.getItem('token');
+    return !!localStorage.getItem('token');  // Verifica se o token existe no localStorage
   }
 
   getToken(): string | null {

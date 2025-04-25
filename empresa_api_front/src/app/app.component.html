@@ -1,5 +1,5 @@
 <!-- src/app/app.component.html -->
-<nav>
+<nav *ngIf="isLoggedIn()"> <!-- Exibe o nav apenas se o usuário estiver logado -->
   <ul>
     <li><a routerLink="/empresas">📄 Listar Empresas</a></li>
     <li><a routerLink="/empresas/nova">➕ Cadastrar Empresa</a></li>

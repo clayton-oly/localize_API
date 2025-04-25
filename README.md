@@ -1,36 +1,52 @@
-# Empresa API - Cadastro de Empresas com CNPJ
+# 🏢 Localize
 
-Este é um projeto de backend desenvolvido em **ASP.NET Core** com autenticação **JWT** e integração com a API pública **ReceitaWS** para o cadastro de empresas usando **CNPJ**. A aplicação também é containerizada usando **Docker** e pode ser deployada na plataforma **Render**.
+**Localize** é uma aplicação web para cadastro e consulta de empresas brasileiras via CNPJ. Utiliza a API pública da ReceitaWS para obter os dados e armazena localmente os cadastros por usuário autenticado.
 
-## Funcionalidades
+## 🌐 Acesse
 
-- **Cadastro de Usuário**:
-  - Cadastro com nome, e-mail e senha (armazenada com hash).
-  - Autenticação JWT para login.
+- Frontend: [https://localize-api.vercel.app](https://localize-api.vercel.app)
+- Backend: [https://empresas-api-lqwm.onrender.com](https://empresas-api-lqwm.onrender.com)
 
-- **Cadastro de Empresas**:
-  - O usuário logado pode cadastrar uma empresa fornecendo apenas o **CNPJ**.
-  - A API consulta os dados no endpoint da **ReceitaWS** para obter informações da empresa (nome, fantasia, situação, etc.).
+## ✨ Funcionalidades
 
-- **Listagem de Empresas**:
-  - O usuário logado pode visualizar todas as empresas cadastradas.
+- 🔐 Autenticação de usuários com JWT
+- 🏢 Cadastro de empresa por CNPJ (com consumo da API ReceitaWS)
+- 📄 Listagem das empresas cadastradas por usuário
+- ❌ Validações para evitar CNPJs inválidos ou dados incompletos
 
-## Tecnologias
+## 🚀 Tecnologias
 
-- **ASP.NET Core 6.0+**
-- **JWT Authentication**
-- **API da ReceitaWS**
-- **Docker** (para containerização)
-- **Banco de Dados In-Memory** (para persistência dos dados)
-- **Swagger** para documentação e testes da API
-- **Render** para o deploy da aplicação
+### Backend
+- .NET 8 / ASP.NET Core
+- Entity Framework InMemory
+- JWT Authentication
+- Consumo de API externa (ReceitaWS)
+- Deploy: Render
 
-## Como Rodar Localmente
+### Frontend
+- Angular 15
+- Reactive Forms
+- Deploy: Vercel
 
-### 1. Clonando o Repositório
+## 🛠️ Como rodar localmente
 
-Clone este repositório para sua máquina local:
-
+### Backend
 ```bash
-git clone https://github.com/seu-usuario/nome-do-repositorio.git
-cd nome-do-repositorio
+git clone https://github.com/clayton-oly/empresa_api_back.git
+cd backend-localize
+dotnet run
+```
+
+### Frontend
+```bash
+git clone https://github.com/clayton-oly/empresa_api_front.git
+cd frontend-localize
+npm install
+ng serve
+```
+
+## 📬 Contato
+
+Feito com ❤️ por **Clayton William**  
+📧 Email: clayton.will08@gmail.com 
+💼 LinkedIn: [linkedin.com/in/clayton-oly](https://www.linkedin.com/in/clayton-oly)

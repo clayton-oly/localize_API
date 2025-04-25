@@ -15,14 +15,13 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll",
-        builder => builder.AllowAnyOrigin()
-                          .AllowAnyMethod()
-                          .AllowAnyHeader());
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
 });
-
-
-
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -56,7 +55,6 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 builder.Services.AddHttpClient<ReceitaWsService>();
-
 builder.Services.AddScoped<JwtService>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -79,7 +77,9 @@ builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
-app.UseCors("AllowAll");
+app.UseHttpsRedirection();
+
+app.UseCors("AllowAll"); 
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -99,8 +99,6 @@ app.Use(async (context, next) =>
     }
     await next();
 });
-
-app.UseHttpsRedirection();
 
 app.MapControllers();
 

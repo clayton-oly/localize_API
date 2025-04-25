@@ -12,12 +12,10 @@ export class CadastroEmpresaComponent {
   loading: boolean = false;
   error: string = '';
   
-  // Validação de CNPJ
   private cnpjRegex: RegExp = /^\d{14}$/;
 
   constructor(private empresaService: EmpresaService, private router: Router) {}
 
-  // Função para garantir que o campo aceite apenas números
   onCnpjInput(event: any) {
     this.cnpj = event.target.value.replace(/\D/g, ''); 
 
@@ -26,7 +24,6 @@ export class CadastroEmpresaComponent {
     }
   }
 
-  // Função para validar CNPJ
   validarCnpj(): boolean {
     return this.cnpjRegex.test(this.cnpj);
   }

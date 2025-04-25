@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class EmpresaService {
-  private apiUrl = 'https://localhost:7186/api/empresa'; // URL do backend local
+  //private apiUrl = 'https://localhost:7186/api/empresa';
+  private apiUrl = 'https://empresas-api-lqwm.onrender.com/api/empresa'; 
 
   constructor(private http: HttpClient) {}
 

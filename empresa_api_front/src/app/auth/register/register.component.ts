@@ -12,16 +12,30 @@ export class RegisterComponent {
   email: string = '';
   senha: string = '';
   error: string = '';
+  successMessage: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
   onRegister() {
     this.authService.register(this.nome, this.email, this.senha).subscribe({
       next: () => {
-        this.router.navigate(['/login']);
+        this.successMessage = 'Cadastro realizado com sucesso! Redirecionando para o login...';
+        this.error = '';
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 3000); 
       },
       error: (err) => {
-        this.error = 'Erro ao cadastrar usuário. Tente novamente.';
+        if (err.status === 400) {
+          if (err.error && err.error.message) {
+            this.error = err.error.message;
+          } else {
+            this.error = err.error || 'Erro ao cadastrar usuário. Tente novamente.';
+          }
+        } else {
+          this.error = 'Erro desconhecido. Tente novamente mais tarde.';
+        }
+        this.successMessage = '';
       }
     });
   }

@@ -11,8 +11,8 @@ interface LoginResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  //private apiUrl = 'https://empresas-api-lqwm.onrender.com/api/auth';
-  private apiUrl = 'https://localhost:7186/api/auth'
+  private apiUrl = 'https://empresas-api-lqwm.onrender.com/api/auth';
+  //private apiUrl = 'https://localhost:7186/api/auth'
 
   constructor(private http: HttpClient) {}
 

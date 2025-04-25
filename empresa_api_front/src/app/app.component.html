@@ -1,10 +1,11 @@
-<!-- src/app/app.component.html -->
-<nav *ngIf="isLoggedIn()"> <!-- Exibe o nav apenas se o usuário estiver logado -->
-  <ul>
-    <li><a routerLink="/empresas">📄 Listar Empresas</a></li>
-    <li><a routerLink="/empresas/nova">➕ Cadastrar Empresa</a></li>
-    <li><a (click)="logout()">🚪 Sair</a></li>
-  </ul>
+<nav *ngIf="isLoggedIn()" class="navbar">
+  <div class="navbar-container">
+    <ul class="navbar-list">
+      <li><a routerLink="/empresas" class="navbar-item">📄 Listar Empresas</a></li>
+      <li><a routerLink="/empresas/nova" class="navbar-item">➕ Cadastrar Empresa</a></li>
+      <li><a (click)="logout()" class="navbar-item">🚪 Sair</a></li>
+    </ul>
+  </div>
 </nav>
 
 <router-outlet></router-outlet>

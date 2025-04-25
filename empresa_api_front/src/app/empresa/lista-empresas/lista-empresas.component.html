@@ -1,22 +1,48 @@
 <div class="container">
   <h2>Empresas Cadastradas</h2>
 
-  <div *ngIf="loading">Carregando...</div>
+  <div *ngIf="loading" class="loading-message">Carregando...</div>
 
-  <table *ngIf="!loading" class="table table-striped">
-    <thead>
-      <tr>
-        <th>Nome Empresarial</th>
-        <th>CNPJ</th>
-        <th>Situação</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let empresa of empresas">
-        <td>{{ empresa.nomeEmpresarial }}</td>
-        <td>{{ empresa.cnpj }}</td>
-        <td>{{ empresa.situacao }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="table-responsive">
+    <table *ngIf="!loading" class="table">
+      <thead>
+        <tr>
+          <th>Nome Empresarial</th>
+          <th>Nome Fantasia</th>
+          <th>CNPJ</th>
+          <th>Situação</th>
+          <th>Abertura</th>
+          <th>Tipo</th>
+          <th>Natureza Jurídica</th>
+          <th>Atividade Principal</th>
+          <th>Logradouro</th>
+          <th>Número</th>
+          <th>Complemento</th>
+          <th>Bairro</th>
+          <th>Município</th>
+          <th>UF</th>
+          <th>CEP</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let empresa of empresas">
+          <td>{{ empresa.nomeEmpresarial }}</td>
+          <td>{{ empresa.nomeFantasia }}</td>
+          <td>{{ empresa.cnpj }}</td>
+          <td>{{ empresa.situacao }}</td>
+          <td>{{ empresa.abertura }}</td>
+          <td>{{ empresa.tipo }}</td>
+          <td>{{ empresa.naturezaJuridica }}</td>
+          <td>{{ empresa.atividadePrincipal }}</td>
+          <td>{{ empresa.logradouro }}</td>
+          <td>{{ empresa.numero }}</td>
+          <td>{{ empresa.complemento }}</td>
+          <td>{{ empresa.bairro }}</td>
+          <td>{{ empresa.municipio }}</td>
+          <td>{{ empresa.uf }}</td>
+          <td>{{ empresa.cep }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

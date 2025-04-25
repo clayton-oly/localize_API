@@ -30,10 +30,15 @@ namespace EmpresaApi.Controllers
 
             var usuarioId = int.Parse(claim.Value);
 
-
             var resposta = await _receitaWs.BuscarCnpjAsync(cnpj);
-            if (resposta == null)
-                return BadRequest("Erro ao buscar CNPJ");
+
+            if (resposta == null ||
+                string.IsNullOrWhiteSpace(resposta.Cnpj) ||
+                string.IsNullOrWhiteSpace(resposta.Nome) ||
+                string.IsNullOrWhiteSpace(resposta.Atividade_principal?.FirstOrDefault()?.Text))
+            {
+                return BadRequest("CNPJ inválido ou dados incompletos. Verifique se o CNPJ está correto.");
+            }
 
             var empresa = new Empresa
             {

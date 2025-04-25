@@ -1,12 +1,26 @@
 <div class="container">
   <h2>Cadastro de Empresa</h2>
 
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+  
+  <div *ngIf="loading" class="loading-message">Carregando...</div>
+
   <div class="form-group">
     <label for="cnpj">CNPJ:</label>
-    <input type="text" id="cnpj" [(ngModel)]="cnpj" class="form-control" placeholder="Digite o CNPJ" />
-    <button class="btn btn-primary mt-2" (click)="salvarEmpresa()" [disabled]="!cnpj">Cadastrar</button>
+    <input
+      type="text"
+      id="cnpj"
+      [(ngModel)]="cnpj"
+      class="form-control"
+      placeholder="Digite o CNPJ"
+    />
   </div>
 
-  <div *ngIf="loading">Carregando...</div>
-  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+  <button
+    class="btn btn-primary mt-3"
+    (click)="salvarEmpresa()"
+    [disabled]="!cnpj"
+  >
+    Cadastrar
+  </button>
 </div>

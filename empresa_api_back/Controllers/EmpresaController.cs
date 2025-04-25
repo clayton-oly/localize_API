@@ -4,6 +4,7 @@ using EmpresaApi.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using System.Linq;
 
 namespace EmpresaApi.Controllers
 {
@@ -21,6 +22,16 @@ namespace EmpresaApi.Controllers
             _receitaWs = receitaWs;
         }
 
+        private string LimparCnpj(string cnpj)
+        {
+            return string.IsNullOrEmpty(cnpj) ? string.Empty : new string(cnpj.Where(char.IsDigit).ToArray());
+        }
+
+        private bool ValidarCnpj(string cnpj)
+        {
+            return cnpj.Length == 14;
+        }
+
         [HttpPost("{cnpj}")]
         public async Task<IActionResult> CadastrarEmpresa(string cnpj)
         {
@@ -30,7 +41,11 @@ namespace EmpresaApi.Controllers
 
             var usuarioId = int.Parse(claim.Value);
 
-            var resposta = await _receitaWs.BuscarCnpjAsync(cnpj);
+            var cnpjLimpo = LimparCnpj(cnpj);
+            if (!ValidarCnpj(cnpjLimpo))
+                return BadRequest("CNPJ inválido. O CNPJ deve ter exatamente 14 dígitos.");
+
+            var resposta = await _receitaWs.BuscarCnpjAsync(cnpjLimpo);
 
             if (resposta == null ||
                 string.IsNullOrWhiteSpace(resposta.Cnpj) ||

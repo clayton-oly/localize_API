@@ -7,13 +7,13 @@
 
   <div class="form-group">
     <label for="cnpj">CNPJ:</label>
-    <input
-      type="text"
-      id="cnpj"
-      [(ngModel)]="cnpj"
-      class="form-control"
-      placeholder="Digite o CNPJ"
-    />
+    <input 
+      type="text" 
+      [(ngModel)]="cnpj" 
+      (input)="onCnpjInput($event)" 
+      maxlength="14" 
+      placeholder="Digite o CNPJ" 
+      class="form-control">
   </div>
 
   <button

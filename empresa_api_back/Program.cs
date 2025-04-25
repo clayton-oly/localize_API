@@ -55,13 +55,10 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-// Serviço para consumir a API da ReceitaWS
 builder.Services.AddHttpClient<ReceitaWsService>();
 
-// Adiciona o serviço JWT
 builder.Services.AddScoped<JwtService>();
 
-// Configuração de autenticação JWT
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -84,18 +81,15 @@ var app = builder.Build();
 
 app.UseCors("AllowAll");
 
-// Middleware de autenticação e autorização
 app.UseAuthentication();
 app.UseAuthorization();
 
-// Habilita o Swagger no ambiente de desenvolvimento
 if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-// Redireciona da raiz para o Swagger automaticamente
 app.Use(async (context, next) =>
 {
     if (context.Request.Path == "/")

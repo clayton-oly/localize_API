@@ -1,0 +1,52 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Build e obj
+bin/
+obj/
+**/bin/
+**/obj/
+
+# Arquivos de log e temporários
+*.log
+*.tmp
+*.temp
+
+# Diretórios de publicação
+out/
+publish/
+
+# Dotnet
+*.db
+*.DS_Store
+*.swp
+
+# User secrets
+secrets.json
+
+# Docker
+*.dockerfile
+Dockerfile.*
+docker-compose.*
+.env
+
+# Angular - empresa_api_front
+empresa_api_front/node_modules/
+empresa_api_front/dist/
+empresa_api_front/.angular/cache/
+empresa_api_front/.angular/
+
+# Sistema de cache do npm/yarn
+empresa_api_front/package-lock.json
+empresa_api_front/yarn.lock
+
+# Logs do npm
+empresa_api_front/npm-debug.log*
+
+# Mac/Linux trash
+**/.Trash-*/
+
+# VSCode
+.vscode/

@@ -10,39 +10,29 @@ namespace EmpresaApi.Controllers
     [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
-        private readonly AppDbContext _context;
         private readonly JwtService _jwtService;
+        private readonly UsuarioService _usuarioService;
 
-        public AuthController(AppDbContext context, JwtService jwtService)
+        public AuthController(JwtService jwtService, UsuarioService usuarioService)
         {
-            _context = context;
             _jwtService = jwtService;
+            _usuarioService = usuarioService;
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(UsuarioRegisterDto dto)
+        public async Task<IActionResult> Register(Usuario usuario)
         {
-            if (_context.Usuarios.Any(u => u.Email == dto.Email))
+            if (_usuarioService.Register(usuario))
                 return BadRequest("E-mail já cadastrado");
-
-            var usuario = new Usuario
-            {
-                Nome = dto.Nome,
-                Email = dto.Email,
-                SenhaHash = BCrypt.Net.BCrypt.HashPassword(dto.Senha)
-            };
-
-            _context.Usuarios.Add(usuario);
-            await _context.SaveChangesAsync();
 
             return Ok(new { message = "Usuário criado com sucesso" });
         }
 
         [HttpPost("login")]
-        public IActionResult Login(UsuarioLoginDto dto)
+        public IActionResult Login(Usuario usuario)
         {
-            var usuario = _context.Usuarios.FirstOrDefault(u => u.Email == dto.Email);
-            if (usuario == null || !BCrypt.Net.BCrypt.Verify(dto.Senha, usuario.SenhaHash))
+            var user = _usuarioService.Login(usuario);
+            if (user == null || !BCrypt.Net.BCrypt.Verify(user.Senha, user.SenhaHash))
                 return Unauthorized("Credenciais inválidas");
 
             var token = _jwtService.GenerateToken(usuario);
